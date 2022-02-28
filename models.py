@@ -127,7 +127,7 @@ class DefmodModel(nn.Module):
 
 
 class RevdictModel(nn.Module):
-    """A standard Rnn version for Reverse dictionary Modeling."""
+    """A Bidirectional Rnn version for Reverse dictionary Modeling."""
 
     def __init__(
             self, vocab, d_model=256, n_layers=4, dropout=0.3, hidden_dim=256
@@ -139,13 +139,13 @@ class RevdictModel(nn.Module):
         self.eos_idx = vocab[data.EOS]
         self.hidden_dim = hidden_dim
         self.embedding = nn.Embedding(len(vocab), d_model, padding_idx=self.padding_idx)
-        self.rnn = nn.RNN(d_model,hidden_dim,n_layers,dropout=dropout,batch_first=False,bidirectional=False)
+        self.rnn = nn.RNN(d_model,hidden_dim,n_layers,dropout=dropout,batch_first=False,bidirectional=True)
         self.dropout = nn.Dropout(dropout)
-        self.e_proj = nn.Linear(hidden_dim,d_model)
+        self.e_proj = nn.Linear(2*hidden_dim,d_model)
         self.hidden = None
 
     def init_hidden(self,batch_size):
-        return torch.ones(self.n_layers,batch_size,self.hidden_dim).float().to(torch.device('cuda'))
+        return torch.ones(2*self.n_layers,batch_size,self.hidden_dim).float().to(torch.device('cuda'))
                 
 
     def forward(self, gloss_tensor):

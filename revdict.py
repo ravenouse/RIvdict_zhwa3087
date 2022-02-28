@@ -212,6 +212,7 @@ def pred(args):
     with open(args.pred_dir, "w") as ostr:
         json.dump(predictions, ostr)
 
+
 def main(args):
     if args.do_train:
         logger.debug("Performing revdict training")
