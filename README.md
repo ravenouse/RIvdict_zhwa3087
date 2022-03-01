@@ -19,11 +19,10 @@ Our [BiRNN-based Monolingual Model](https://github.com/ravenouse/Revdict_ZHWA308
 
 Our [LSTM-based Monolingual Model](https://github.com/ravenouse/Revdict_ZHWA3087/tree/Monolingual-LSTM-based-Model) <br>
 
-Our [LSTM-based Monolingual Model](https://github.com/ravenouse/Revdict_ZHWA3087/tree/Monolingual-LSTM-based-Model) <br>
-
 Our [Elmo-based Monolingual Model](https://github.com/ravenouse/Revdict_ZHWA3087/tree/Monolingual-Elmo-based-Model) <br>
 
 Our [Transformer-based Monolingual Model](https://github.com/ravenouse/Revdict_ZHWA3087/tree/Monolingual-Transformer-based-Model) <br>
+
 
 ### Multilingual
 
@@ -42,7 +41,7 @@ Our [Elmo-based Monolingual Model](https://github.com/ravenouse/Revdict_ZHWA3087
 Our [Elmo-based Monolingual Model(ALT)](https://github.com/ravenouse/Revdict_ZHWA3087/tree/Multilingual-Elmo-based-Model(ALT))<br>
 
 ### Multitask
-Our [ELMO-based Monolingual Multitask model with DWA optimization](https://github.com/ravenouse/Revdict_ZHWA3087/tree/Monolingual-Multitask-ELMO-based-Model(DWA)<br>
+Our [ELMO-based Monolingual Multitask model with DWA optimization](https://github.com/ravenouse/Revdict_ZHWA3087/tree/Monolingual-Multitask-ELMO-based-Model(DWA))<br>
 
 ## Others
 [Tokenizers](https://github.com/ravenouse/Revdict_ZHWA3087/tree/Tokenizers) that we have used in the experiments <br>
