@@ -73,6 +73,11 @@ def get_parser(
         default=pathlib.Path("revdict-baseline-preds.json"),
         help="where to save predictions",
     )
+    parser.add_argument(
+        "--continue_training",
+        default='no',
+        help="Choose whether continue training or not",
+    )
     return parser
 
 
@@ -106,12 +111,17 @@ def train(args):
     # 2. construct model
     ## Hyperparams
     logger.debug("Setting up training environment")
-    model = models.RevdictModel(dev_dataset.new_vocab).to(args.device)
+    if args.continue_training == 'no':
+        print('will train the model from begining')
+        model = models.RevdictModel(dev_dataset.new_vocab).to(args.device)
+    else:
+        print('will continue to train the model from last time')
+        model = models.DefmodModel.load(args.save_dir / "model.pt").to(args.device)
     model.train()
 
     # 3. declare optimizer & criterion
     ## Hyperparams
-    EPOCHS, LEARNING_RATE, BETA1, BETA2, WEIGHT_DECAY = 15, 1.0e-4, 0.9, 0.999, 1.0e-6
+    EPOCHS, LEARNING_RATE, BETA1, BETA2, WEIGHT_DECAY = 3, 1.0e-4, 0.9, 0.999, 1.0e-6
     optimizer = optim.AdamW(
         model.parameters(),
         lr=LEARNING_RATE,

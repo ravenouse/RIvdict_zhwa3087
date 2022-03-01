@@ -29,6 +29,8 @@ ES='<es>'
 FR='<fr>'
 IT='<it>'
 RU='<ru>'
+
+language_list = ["<en>","<es>","<fr>","<it>","<ru>"]
 refer_dict={"en":4,"es":5,"fr":6,"it":7,"ru":8}
 
 SUPPORTED_ARCHS = ("sgns", "char")
@@ -63,25 +65,29 @@ class JSONDataset(Dataset):
             self.vocab[BOS],
             self.vocab[UNK],
         )
-        en,es,fr,it,ru = (
-            self.vocab[EN],
-            self.vocab[ES],
-            self.vocab[FR],
-            self.vocab[IT],
-            self.vocab[RU],
-        )
         if freeze_vocab:
             self.vocab = dict(vocab)
         with open(file, "r") as istr:
             self.items = json.load(istr)
+
+        type = str(file).split("/")[-1]
+        print(type)
         # preparse data
-        for json_dict in self.items:
+        for idx, json_dict in enumerate(self.items):
             # in definition modeling test datasets, gloss targets are absent
+#             json_dict['idx'] = idx
+#             if "all" in type:
+#                 if "train" in type:
+#                     json_dict['language_token'] = language_list[idx//43608]
+#                     # print('train file')
+#                 elif "dev" in type:
+#                     json_dict['language_token'] = language_list[idx //6375]
+#                     # print('dev file')
+#             else:
+#                 json_dict['language_token'] = f"<{type[:2]}>"
+
             if "gloss" in json_dict:
-                # language = str(json_dict['id'][:2])
-                # print(refer_dict[language])
                 json_dict["gloss_tensor"] = torch.tensor(
-                    # [refer_dict[language]]+
                     [bos]
                     + [
                         self.vocab[word]
@@ -267,6 +273,9 @@ def retokenize(batch,dir):
     new_gloss_tensor = []
     output = tokenizer.encode_batch(batch["gloss"])
     for n in range(len(output)):
+        # print(batch['language_token'])
+        # print(batch['language_token'][n])
+        # print(new_vocab[batch['language_token'][n]])
         one_gloss = [new_vocab[BOS]] + output[n].ids + [new_vocab[EOS]]
         one_gloss_tensor = torch.tensor(one_gloss)
         new_gloss_tensor.append(one_gloss_tensor)

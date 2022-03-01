@@ -6,7 +6,7 @@ import torch.nn.functional as F
 
 import data
 
-device = torch.device("cuda") if torch.cuda.is_available() else "cpu",
+device = torch.device("cuda") if torch.cuda.is_available() else "cpu"
 print("device",device)
 
 class PositionalEncoding(nn.Module):
@@ -138,10 +138,10 @@ class RevdictModel(nn.Module):
         self.padding_idx = vocab[data.PAD]
         self.eos_idx = vocab[data.EOS]
         self.hidden_dim = hidden_dim
-        self.embedding = nn.Embedding(len(vocab), d_model, padding_idx=self.padding_idx)
+        self.embedding = nn.Embedding(len(vocab), d_model, padding_idx=self.padding_idx).to(device)
         self.lstm = nn.LSTM(d_model,hidden_dim,n_layers,dropout=dropout,batch_first=False,bidirectional=True)
-        self.dropout = nn.Dropout(dropout)
-        self.e_proj = nn.Linear(2*hidden_dim,d_model)
+        self.dropout = nn.Dropout(dropout).to(device)
+        self.e_proj = nn.Linear(2*hidden_dim,d_model).to(device)
         self.hidden = None
 
     def init_hidden(self,batch_size):
@@ -149,6 +149,7 @@ class RevdictModel(nn.Module):
                 torch.ones(2*self.n_layers,batch_size,self.hidden_dim).float().to(torch.device('cuda')))
 
     def forward(self, gloss_tensor):
+        # self.lstm.parameters().to(device)
         key_padding_mask = gloss_tensor == self.padding_idx
         # print('key',key_padding_mask.shape)
         batch_size = gloss_tensor.size(1)
@@ -156,10 +157,11 @@ class RevdictModel(nn.Module):
         self.hidden = self.init_hidden(batch_size)
         # print("hidden",type(self.hidden))
         embs = self.embedding(gloss_tensor).float()
+        embs = embs.to(device)
         # print('embs',embs.shape)
         hidden = self.hidden
         lstm_output, hidden = self.lstm(embs,hidden)
-        lstm_output = self.dropout(lstm_output)
+        lstm_output = self.dropout(lstm_output).to(device)
         # print('lstm_ouput',lstm_output.shape)
         summed_embs = lstm_output.masked_fill(
             key_padding_mask.unsqueeze(-1), 0
