@@ -27,13 +27,13 @@ Our [Transformer-based Monolingual Model](https://github.com/ravenouse/Revdict_Z
 ### Multilingual
 
 #### Transformer-based
-Our [Multilingual-Transformer-based-Model](https://github.com/ravenouse/Revdict_ZHWA3087/tree/Multilingual-Transformer-based-Model)<br>
+Our [Multilingual-Transformer-based-Model](https://github.com/ravenouse/Revdict_ZHWA3087/tree/Multilingual-Transformer-based-Model) <br>
 
-Our [Multilingual-Transformer-based-Model(RC)](https://github.com/ravenouse/Revdict_ZHWA3087/tree/Multilingual-Transformer-based-Model(RC))<br>
+Our [Multilingual-Transformer-based-Model(RC)](https://github.com/ravenouse/Revdict_ZHWA3087/tree/Multilingual-Transformer-based-Model(RC)) <br>
 
-Our [Multilingual-Transformer-based-Model(ALT)](https://github.com/ravenouse/Revdict_ZHWA3087/tree/Multilingual-Transformer-based-Model(ALT))<br>
+Our [Multilingual-Transformer-based-Model(ALT)](https://github.com/ravenouse/Revdict_ZHWA3087/tree/Multilingual-Transformer-based-Model(ALT)) <br>
 
-Our [Multilingual-Transformer-based-Model(RC+ALT)](https://github.com/ravenouse/Revdict_ZHWA3087/tree/Multilingual-Transformer-based-Model(RC+ALT))<br>
+Our [Multilingual-Transformer-based-Model(RC+ALT)](https://github.com/ravenouse/Revdict_ZHWA3087/tree/Multilingual-Transformer-based-Model(RC+ALT)) <br>
 
 #### Elmo-based
 Our [Elmo-based Monolingual Model](https://github.com/ravenouse/Revdict_ZHWA3087/tree/Multilingual-Elmo-based-Model)<br>
