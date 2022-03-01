@@ -29,6 +29,8 @@ ES='<es>'
 FR='<fr>'
 IT='<it>'
 RU='<ru>'
+
+language_list = ["<en>","<es>","<fr>","<it>","<ru>"]
 refer_dict={"en":4,"es":5,"fr":6,"it":7,"ru":8}
 
 SUPPORTED_ARCHS = ("sgns", "char")
@@ -47,6 +49,7 @@ class JSONDataset(Dataset):
               `maxlen` the maximum number of tokens per gloss
         """
         ### Version Change: add new vocab of retokenization
+        print(tokenizer)
         self.tokenizer_dir = tokenizer
         self.new_vocab =None
         self.new_tokenizer()
@@ -74,12 +77,13 @@ class JSONDataset(Dataset):
             self.vocab = dict(vocab)
         with open(file, "r") as istr:
             self.items = json.load(istr)
+
+        type = str(file).split("/")[-1]
+        print(type)
         # preparse data
         for json_dict in self.items:
             # in definition modeling test datasets, gloss targets are absent
             if "gloss" in json_dict:
-                # language = str(json_dict['id'][:2])
-                # print(refer_dict[language])
                 json_dict["gloss_tensor"] = torch.tensor(
                     # [refer_dict[language]]+
                     [bos]
@@ -135,11 +139,9 @@ class JSONDataset(Dataset):
     def load(file):
         return torch.load(file)
 
-    ## initialize a new tokenizer
     def new_tokenizer(self):
         tokenizer = Tokenizer.from_file(str(self.tokenizer_dir))
         self.new_vocab = tokenizer.get_vocab()
-        # print(1)
         return self.new_vocab
 
 # A sampler allows you to define how to select items from your Dataset. Torch
@@ -267,6 +269,9 @@ def retokenize(batch,dir):
     new_gloss_tensor = []
     output = tokenizer.encode_batch(batch["gloss"])
     for n in range(len(output)):
+        # print(batch['language_token'])
+        # print(batch['language_token'][n])
+        # print(new_vocab[batch['language_token'][n]])
         one_gloss = [new_vocab[BOS]] + output[n].ids + [new_vocab[EOS]]
         one_gloss_tensor = torch.tensor(one_gloss)
         new_gloss_tensor.append(one_gloss_tensor)

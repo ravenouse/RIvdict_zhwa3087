@@ -4,6 +4,8 @@ import json
 import logging
 import pathlib
 import sys
+import os
+# from tokenizers import Tokenizer
 
 logger = logging.getLogger(pathlib.Path(__file__).name)
 logger.setLevel(logging.DEBUG)
@@ -45,7 +47,7 @@ def get_parser(
     parser.add_argument(
         "--device",
         type=torch.device,
-        default=torch.device("cuda") if torch.cuda.is_available() else "cpu",
+        default=torch.device("cuda") if torch.cuda.is_available() else"cpu",
         help="path to the train file",
     )
     parser.add_argument(
@@ -58,25 +60,33 @@ def get_parser(
     parser.add_argument(
         "--summary_logdir",
         type=pathlib.Path,
-        default=pathlib.Path("logs") / f"revdict-baseline",
+        default=pathlib.Path("logs") / f"revdict-mul",
         help="write logs for future analysis",
     )
     parser.add_argument(
         "--save_dir",
         type=pathlib.Path,
-        default=pathlib.Path("models") / f"revdict-baseline",
+        default=pathlib.Path("models") / f"revdict-mul",
         help="where to save model & vocab",
     )
     parser.add_argument(
         "--pred_dir",
-        type=pathlib.Path,
-        default=pathlib.Path("revdict-baseline-preds.json"),
+        # type=pathlib.Path,
+        default=pathlib.Path("predictions/revdict-mul-preds.json"),
         help="where to save predictions",
+    )
+    parser.add_argument(
+        "--continue_training",
+        default='no',
+        help="Choose whether continue training or not",
     )
     return parser
 
 
 def train(args):
+    isDir = os.path.isdir(args.save_dir)
+    if isDir == False:
+        print('The save dir for model does not exist')
     assert args.train_file is not None, "Missing dataset for training"
     # 1. get data, vocabulary, summary writer
     logger.debug("Preloading data")
@@ -106,12 +116,17 @@ def train(args):
     # 2. construct model
     ## Hyperparams
     logger.debug("Setting up training environment")
-    model = models.RevdictModel(dev_dataset.new_vocab).to(args.device)
+    if args.continue_training == 'no':
+        print('will train the model from begining')
+        model = models.RevdictModel(dev_dataset.new_vocab).to(args.device)
+    else:
+        print('will continue to train the model from last time')
+        model = models.DefmodModel.load(args.save_dir / "model.pt").to(args.device)
     model.train()
 
     # 3. declare optimizer & criterion
     ## Hyperparams
-    EPOCHS, LEARNING_RATE, BETA1, BETA2, WEIGHT_DECAY = 15, 1.0e-4, 0.9, 0.999, 1.0e-6
+    EPOCHS, LEARNING_RATE, BETA1, BETA2, WEIGHT_DECAY = 3, 1.0e-4, 0.9, 0.999, 1.0e-6
     optimizer = optim.AdamW(
         model.parameters(),
         lr=LEARNING_RATE,
@@ -136,6 +151,7 @@ def train(args):
             pred = model(gls)
             loss = criterion(pred, vec)
             loss.backward()
+
             # keep track of the train loss for this step
             next_step = next(train_step)
             summary_writer.add_scalar(

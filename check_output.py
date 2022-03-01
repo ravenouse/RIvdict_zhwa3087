@@ -41,6 +41,7 @@ def main(filename):
         ids = [i.split(".") for i in ids]
         langs = {i[0] for i in ids}
         if len(langs) != 1:
+            print(langs)
             raise ValueError(
                 f'File "{filename}": ids do not identify a unique language, submission will fail.'
             )
