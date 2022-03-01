@@ -31,9 +31,9 @@ Our [Multilingual-Transformer-based-Model](https://github.com/ravenouse/Revdict_
 
 Our [Multilingual-Transformer-based-Model(RC)](https://github.com/ravenouse/Revdict_ZHWA3087/tree/Multilingual-Transformer-based-Model(RC)) <br>
 
-Our [Multilingual-Transformer-based-Model(ALT)](https://github.com/ravenouse/Revdict_ZHWA3087/tree/Multilingual-Transformer-based-Model(ALT))) <br>
+Our [Multilingual-Transformer-based-Model(ALT)](https://github.com/ravenouse/Revdict_ZHWA3087/tree/Multilingual-Transformer-based-Model(ALT)) <br>
 
-Our [Multilingual-Transformer-based-Model(RC+ALT)](https://github.com/ravenouse/Revdict_ZHWA3087/tree/Multilingual-Transformer-based-Model(RC+ALT))) <br>
+Our [Multilingual-Transformer-based-Model(RC+ALT)](https://github.com/ravenouse/Revdict_ZHWA3087/tree/Multilingual-Transformer-based-Model(RC+ALT)) <br>
 
 #### Elmo-based
 Our [Elmo-based Monolingual Model](https://github.com/ravenouse/Revdict_ZHWA3087/tree/Multilingual-Elmo-based-Model)<br>
@@ -46,4 +46,4 @@ Our [ELMO-based Monolingual Multitask model with DWA optimization](https://githu
 ## Others
 [Tokenizers](https://github.com/ravenouse/Revdict_ZHWA3087/tree/Tokenizers) that we have used in the experiments <br>
 
-[Other Python code](https://github.com/ravenouse/Revdict_ZHWA3087) that we have used in the experiments<br>
+<!-- [Other Python codes](https://github.com/ravenouse/Revdict_ZHWA3087) that we have used in the experiments<br> -->
