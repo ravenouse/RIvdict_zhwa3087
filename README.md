@@ -46,4 +46,4 @@ Our [ELMO-based Monolingual Multitask model with DWA optimization](https://githu
 ## Others
 [Tokenizers](https://github.com/ravenouse/Revdict_ZHWA3087/tree/Tokenizers) that we have used in the experiments <br>
 
-<!-- [Other Python codes](https://github.com/ravenouse/Revdict_ZHWA3087) that we have used in the experiments<br> -->
+[Other Python codes](https://github.com/ravenouse/Revdict_ZHWA3087/tree/Other_Codes) that we have used in the experiments<br>
