@@ -7,7 +7,7 @@ is one of the two tracks of [SemEval 2022 Task 1](https://competitions.codalab.o
 
 Our Paper has been submitted to the SemEval2022 on Feb 28th 2022. <br>
 
-The link to the camera-ready version of our paper: [1Cademy at Semeval-2022 Task 1] (https://drive.google.com/file/d/1EjPdUQUn2uPoYSh75Ni671iZlKlnDKPV/view?usp=sharing).<br>
+The link to the camera-ready version of our paper: [1Cademy at Semeval-2022 Task 1](https://drive.google.com/file/d/1EjPdUQUn2uPoYSh75Ni671iZlKlnDKPV/view?usp=sharing).<br>
 
 All our models' codes are adapted from and inspired by [organizers' baseline code](https://github.com/TimotheeMickus/codwoe/tree/main/code). <br>
 We want to express our thanks to the organizers here again for their effort.<br>
