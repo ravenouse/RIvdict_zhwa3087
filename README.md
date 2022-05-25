@@ -5,7 +5,7 @@
 This repo is to describe our experiments and store our codes to proceed with the Reverse Dictionary Task, which
 is one of the two tracks of [SemEval 2022 Task 1](https://competitions.codalab.org/competitions/34022).<br>
 
-Our Paper has been submitted to the SemEval2022 on Feb 28th 2022. <br>
+Our Paper has been submitted to the SemEval2022 on Feb 28th 2022, and has been accepted. <br>
 
 The link to the camera-ready version of our paper: [1Cademy at Semeval-2022 Task 1](https://drive.google.com/file/d/1EjPdUQUn2uPoYSh75Ni671iZlKlnDKPV/view?usp=sharing).<br>
 
