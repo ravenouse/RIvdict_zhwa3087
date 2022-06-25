@@ -9,7 +9,7 @@ Our Paper has been submitted to the SemEval2022 on Feb 28th 2022, and has been a
 
 The link to the camera-ready version of our paper: [1Cademy at SemEval-2022 Task 1](https://arxiv.org/abs/2206.03702)<br>
 
-The slides to demonstrate our paper:[SemEval2022_slides](https://github.com/ravenouse/Revdict_1Cademy/blob/main/SemEval2022_slide.pdf)<br>
+The slides to demonstrate our paper: [SemEval2022_slides](https://github.com/ravenouse/Revdict_1Cademy/blob/main/SemEval2022_slides.pdf)<br>
 
 All our models' codes are adapted from and inspired by [organizers' baseline code](https://github.com/TimotheeMickus/codwoe/tree/main/code). <br>
 We want to express our thanks to the organizers here again for their effort.<br>
